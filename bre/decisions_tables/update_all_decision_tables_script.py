@@ -1,10 +1,7 @@
 import dill
-import sys
 from pathlib import Path
 
 import pyDMNrules
-
-sys.setrecursionlimit(10000)
 
 
 def get_all_files(folder_path):
@@ -35,7 +32,22 @@ def add_to_pkl(file_path, dmn_object, cache_dir):
         raise
 
 
+def get_dmn_from_pkl(file_path):
+    """Loads a pyDMNrules.DMN object from a pickle file."""
+    try:
+        with open(file_path, 'rb') as f:
+            dmn_object = dill.load(f)
+        print(f"Successfully loaded DMN object from: {file_path}")
+        return dmn_object
+    except Exception as ex:
+        print(f"Error loading pickle file {file_path}: {ex}")
+        raise
+
+
 def main():
+    """
+    Main function to load all DMN tables from Excel files and save them as pickles.
+    """
     print("Starting DMN table processing...")
     base_path = Path('D:/projects/rule_engine/business_rule_engine/rules/bre01/bre/decisions_tables/')
     raw_folder_path = base_path / 'raw'
@@ -50,6 +62,7 @@ def main():
     try:
         for file_path in file_paths:
             print(f"Processing: {file_path.name}")
+            # Create a new DMN object for each file to prevent recursion errors
             dmn = pyDMNrules.DMN()
             status = dmn.load(file_path)
 
