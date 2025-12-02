@@ -1,4 +1,7 @@
-from ...models.generated import Mpp, Result
+from rules.bre01.models.generated.mpp import Mpp, Result
+from utils.logger import get_logger
+
+logger = get_logger(__name__)
 
 def rule_rate(mpp:Mpp, risk_rating):
     res = Result()
@@ -7,18 +10,19 @@ def rule_rate(mpp:Mpp, risk_rating):
         for applicant in mpp.application.applicant:
             max_salary = max(max_salary, applicant.salary)
         if risk_rating > 0.8:
-            res.rate = 1000.0
+            res.rate = 0.2
         else:
-            res.rate = 500.0
+            res.rate = 0.15
         return res
     except Exception as e:
+        logger.error(e)
         res.reference = "error"
         return res
 
 def rule_get_charges(mpp: Mpp):
     res = Result()
     try:
-        charges = 0.0
+        charges = 0
         max_salary = 0
         for applicant in mpp.application.applicant :
             max_salary = max(max_salary, applicant.salary)
@@ -28,5 +32,6 @@ def rule_get_charges(mpp: Mpp):
             charges = 500.0
         return charges
     except Exception as e:
+        logger.error(e)
         res.reference = "error"
         return res

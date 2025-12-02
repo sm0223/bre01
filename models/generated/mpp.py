@@ -1,9 +1,11 @@
+from datetime import date
 from dataclasses import dataclass, field
 from typing import Optional
+from dataclasses_json import dataclass_json, config
 
 
-@dataclass
 @dataclass_json
+@dataclass
 class Applicant:
     name: Optional[str] = field(
         default=None,
@@ -23,14 +25,12 @@ class Applicant:
             "required": True,
         }
     )
-    dob: Optional[datetime] = field(
+    dob: Optional[date] = field(
         default=None,
-        metadata={
-            "name": "DOB",
-            "type": "Element",
-            "namespace": "",
-            "required": True,
-        }
+        metadata=config(
+            encoder=lambda x: x.isoformat() if x else None,
+            decoder=lambda x: date.fromisoformat(x) if x else None
+        )
     )
     salary: Optional[float] = field(
         default=None,
@@ -41,6 +41,7 @@ class Applicant:
             "required": True,
         }
     )
+@dataclass_json
 @dataclass
 class Result:
     rate: Optional[float] = field(
@@ -69,6 +70,7 @@ class Result:
             "required": True,
         }
     )
+@dataclass_json
 @dataclass
 class Application:
     application_number: Optional[str] = field(
@@ -89,6 +91,7 @@ class Application:
             "min_occurs": 1,
         }
     )
+@dataclass_json
 @dataclass
 class Mpp:
     application: Optional[Application] = field(
