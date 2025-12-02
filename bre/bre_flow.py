@@ -13,7 +13,7 @@ def bre_flow(mpp:Mpp) :
     risk_rating = 1.0
     try:
         # get the decision table instance from cache
-        dmn = get_dmn_from_pkl("D:/projects/rule_engine/business_rule_engine/rules/bre01/bre/decisions_tables/cache/Applicant_Risk_Rating.pkl")
+        dmn = get_dmn_from_pkl("/rules/bre01/bre/decision_tables/cache/Applicant_Risk_Rating.pkl")
         #preparing the input for the DT
         data = {
                 'City': mpp.application.applicant[0].city,
