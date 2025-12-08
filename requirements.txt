@@ -1,0 +1,7 @@
+pytest
+dill
+pyDMNrules
+flask
+openpyxl
+xsdata
+dataclasses_json

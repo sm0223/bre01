@@ -2,7 +2,7 @@ import json
 from dataclasses import asdict
 from datetime import datetime
 
-from rules.bre01.models.generated.mpp import Applicant, Application, Mpp, Result
+from repos.bre01.bom.generated.mpp import Applicant, Application, Mpp, Result
 
 class DateTimeEncoder(json.JSONEncoder):
     def default(self, obj):
