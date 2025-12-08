@@ -49,7 +49,7 @@ def main():
     Main function to load all DMN tables from Excel files and save them as pickles.
     """
     print("Starting DMN table processing...")
-    base_path = Path('/rules/bre01/bre/decision_tables/')
+    base_path = Path('/rules/bre01/policy_rules/decision_tables/')
     raw_folder_path = base_path / 'raw'
     cache_folder_path = base_path / 'cache'
 
