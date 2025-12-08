@@ -1,4 +1,4 @@
-from rules.bre01.models.generated.mpp import Mpp, Result
+from repos.bre01.bom.generated.mpp import Mpp, Result
 from utils.logger import get_logger
 
 logger = get_logger(__name__)

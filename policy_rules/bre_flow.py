@@ -2,18 +2,17 @@ from dataclasses import asdict
 from utils.utils import years_difference, get_dmn_from_pkl
 from datetime import datetime
 
-from rules.bre01.bre.functions.rule1 import rule_get_charges, rule_rate
+from repos.bre01.policy_rules.functions.rule1 import rule_get_charges, rule_rate
 from utils.logger import get_logger
-from rules.bre01.models.generated.mpp import Mpp
+from repos.bre01.bom.generated.mpp import Mpp
 
 logger = get_logger(__name__)
 
 def bre_flow(mpp:Mpp) :
-    print(asdict(mpp))
     risk_rating = 1.0
     try:
         # get the decision table instance from cache
-        dmn = get_dmn_from_pkl("/rules/bre01/bre/decision_tables/cache/Applicant_Risk_Rating.pkl")
+        dmn = get_dmn_from_pkl("/repos/bre01/policy_rules/decision_tables/cache/Applicant_Risk_Rating.pkl")
         #preparing the input for the DT
         data = {
                 'City': mpp.application.applicant[0].city,
@@ -34,5 +33,6 @@ def bre_flow(mpp:Mpp) :
     # Finally setting the result by calling rule_rate() and rule_get_charges() from rule1
     mpp.result = rule_rate(mpp, risk_rating)
     mpp.result.charges = rule_get_charges(mpp)
+    mpp.result.reference = "Success"
     return mpp
 
