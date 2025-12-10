@@ -5,3 +5,4 @@ flask
 openpyxl
 xsdata
 dataclasses_json
+D:/projects/business_rule_engine

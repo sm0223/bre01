@@ -1,7 +1,5 @@
-from repos.bre01.bom.generated.mpp import Mpp, Result
-from utils.logger import get_logger
-
-logger = get_logger(__name__)
+from bom.generated.mpp import Mpp, Result
+from utils.general import tlogger
 
 def rule_rate(mpp:Mpp, risk_rating):
     res = Result()
@@ -15,7 +13,7 @@ def rule_rate(mpp:Mpp, risk_rating):
             res.rate = 0.15
         return res
     except Exception as e:
-        logger.error(e)
+        tlogger().error(e)
         res.reference = "error"
         return res
 
@@ -32,6 +30,6 @@ def rule_get_charges(mpp: Mpp):
             charges = 500.0
         return charges
     except Exception as e:
-        logger.error(e)
+        tlogger().error(e)
         res.reference = "error"
         return res

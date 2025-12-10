@@ -50,11 +50,7 @@ def main():
     Main function to load all DMN tables from Excel files and save them as pickles.
     """
     print("Starting DMN table processing...")
-<<<<<<< HEAD
-    base_path = Path('/rules/bre01/policy_rules/decision_tables/')
-=======
     base_path = Path('/repos/bre01/policy_rules/decision_tables/')
->>>>>>> 8084b12259451452dcae884869c811bf2efb6402
     raw_folder_path = base_path / 'raw'
     cache_folder_path = base_path / 'cache'
     sys.setrecursionlimit(10000)

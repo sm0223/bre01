@@ -1,0 +1,24 @@
+{
+    "application": {
+        "application_number": "101",
+        "applicant": [
+            {
+                "name": "Shubham",
+                "city": "Delhi",
+                "dob": "1998-01-02",
+                "salary": 150000
+            },
+            {
+                "name": "Ayantika",
+                "city": "Bangalore",
+                "dob": "1999-01-02",
+                "salary": 150000
+            }
+        ]
+    },
+    "result": {
+        "rate": null,
+        "charges": null,
+        "reference": null
+    }
+}
